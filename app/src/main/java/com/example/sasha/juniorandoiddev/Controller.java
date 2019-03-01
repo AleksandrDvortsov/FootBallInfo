@@ -114,9 +114,6 @@ class Controller {
                 for (int i = 0; i < pojo.competitions.size(); i++){
                     string = pojo.competitions.get(i).getName();
                     // костыль, так как только в этих кубках есть каманды
-                    if (pojo.competitions.get(i).getId() == 2000 || pojo.competitions.get(i).getId() == 2018 ){
-                        hmAllLeague.put(pojo.competitions.get(i).getId(), pojo.competitions.get(i).getCode());
-                    }
                     Boolean found = Arrays.asList(string.split(" ")).contains(keyword);
                     Boolean found2 = Arrays.asList(string.split(" ")).contains(keyword2);
                     index = string.indexOf(keyword3);
@@ -124,16 +121,28 @@ class Controller {
                         hmAllLeague.put(pojo.competitions.get(i).getId(), string);
                     }
                     index = 0;
+                    int id = pojo.competitions.get(i).getId();
+                    if (id == 2000 || id == 2018 || id == 2001 || id == 2002 || id == 2003 || id == 2013 || id == 2014 || id == 2015){
+                        hmAllLeague.put(pojo.competitions.get(i).getId(), pojo.competitions.get(i).getCode());
+                    }
                 }
             }
             if (check == 1) {
                 String newStr = "{\"count\":0,\"filters\":{},\"competitions\":[" + str + "]}";
                 Gson gson = new Gson();
                 pojo = gson.fromJson(newStr, Pojo.class);
+                System.out.println(pojo.toString());
+                String nameTeam;
+                String img;
+                if (pojo.getCompetitions().get(0).getCurrentSeason().getWinner() != null){
+                    nameTeam = pojo.getCompetitions().get(0).getCurrentSeason().getWinner().getName();
+                    img = pojo.getCompetitions().get(0).getCurrentSeason().getWinner().getCrestUrl();
+                }else {
+                    nameTeam = "no winner!";
+                    img = null;
+                }
 
-                String nameTeam = pojo.getCompetitions().get(0).getCurrentSeason().getWinner().getName();
                 String data = pojo.getCompetitions().get(0).getCurrentSeason().getEndDate();
-                String img = pojo.getCompetitions().get(0).getCurrentSeason().getWinner().getCrestUrl();
                 LeagueProfile.setParamLiga(nameTeam, data, img);
             }
             if (check == 2) {

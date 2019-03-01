@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
             btnNew.setWidth(width);
             btnNew.setBackgroundColor(Color.rgb(204, 255, 255));
             // костыль так как работають только эти ID
-            if (entry.getKey() == 2000 || entry.getKey() == 2018) {
+            if (entry.getKey() == 2000 || entry.getKey() == 2018 || entry.getKey() == 2002 || entry.getKey() == 2013 || entry.getKey() == 2014) {
                 btnNew.setBackgroundColor(Color.LTGRAY);
             }
 

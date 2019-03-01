@@ -63,7 +63,15 @@ public class TeamProfile extends AppCompatActivity {
 
     private void init() {
         nameClub.setText(tm.getName());
-        if (tm.getCrestUrl()!= null) Utils.fetchSvg(context, tm.getCrestUrl(), imageView);
+        System.out.println(tm.getCrestUrl());
+        if (tm.getCrestUrl() != null) {
+            if (tm.getCrestUrl().endsWith(".png")) {
+                Utils.fetchSvg(context, "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg", imageView);
+            } else {
+                Utils.fetchSvg(context, tm.getCrestUrl(), imageView);
+            }
+        }
+
         address.setText(tm.getAddress());
         phoneNum.setText(tm.getPhone());
         webSait.setText(tm.getWebsite());

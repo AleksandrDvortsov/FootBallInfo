@@ -88,7 +88,7 @@ public class LeagueProfile extends AppCompatActivity {
 
     private void loadLeague(final Controller controller) {
         // работают только эти ID
-        if (idL == 2000 || idL == 2018){
+        if (idL == 2000 || idL == 2018 || idL == 2002 || idL == 2013 || idL == 2014){
             controller.setParam(1, league, null, idL);
             final int interval = 500;
             Handler handler = new Handler();
@@ -110,6 +110,7 @@ public class LeagueProfile extends AppCompatActivity {
     public static void setParamLiga(String team, String data, String img) {
         textView3.setText(team);
         textView4.setText(data);
+        if (img == null)img = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
         Utils.fetchSvg(context, img, imageView);
     }
 
